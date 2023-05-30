@@ -47,13 +47,27 @@ if __name__ == '__main__':
         governor = "Hon. Lee Kinyanjui"
     )
     
-
+# INSERT INTO cities
     session.add_all([city1,city2,city3,city4])
     session.commit()
 
     session.bulk_save_objects([city1, city1, city2, city3, city4])
     session.commit()
 
+# READ
     cities = session.query(City).all()
     for city in cities:
        print(city.governor)
+
+# Update
+    query = session.query(City).filter(City.name == "Nairobi City").first()
+    query.name = "Nakuru City"
+    session.commit()
+    
+# delete cities
+    # query = session.query(City).filter(City.name == "Nakuru City").first()
+    # # session.delete(query)
+    # # session.commit()
+    # print(query)
+    
+    
